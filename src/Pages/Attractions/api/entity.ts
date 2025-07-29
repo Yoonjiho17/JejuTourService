@@ -23,3 +23,4 @@ export interface Attractions{
     관리기관전화번호: string;
     데이터기준일자: string;
 }
+

@@ -2,7 +2,7 @@ import type { Attractions } from "./entity";
 import API_KEY from "../../../api/apiKey";
 
 export async function getAttractions(): Promise<Attractions[]> {
-    const url = `https://api.odcloud.kr/api/15109342/v1/uddi:c4e45e4c-cf0a-4886-8cb7-e3667d2df41d?page=1&perPage=10&serviceKey=${API_KEY}`
+    const url = `https://api.odcloud.kr/api/15109342/v1/uddi:c4e45e4c-cf0a-4886-8cb7-e3667d2df41d?page=1&perPage=381&serviceKey=${API_KEY}`
 
     const response = await fetch(url)
     if (!response.ok){

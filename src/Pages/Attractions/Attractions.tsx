@@ -18,7 +18,7 @@ function Attractions() {
             <ul>
                 {data?.map((item) => (
                     <li>
-                        숙박업소명: {item.관광지명}
+                        관광지명: {item.관광지명}
                     </li>
                 ))}
             </ul>
