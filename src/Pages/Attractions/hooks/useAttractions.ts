@@ -3,9 +3,8 @@ import type { Attractions } from "../api/entity";
 import getAttractions from "../api/getAttractions";
 
 export const useAttractions = () => {
-    return useQuery<Attractions[]>({
-    queryKey: ['Attractions'],
+  return useQuery<Attractions[]>({
+    queryKey: ["Attractions"],
     queryFn: getAttractions,
-    });
+  });
 };
-
