@@ -37,8 +37,10 @@ function MainPage() {
             </button>
           ))}
         </div>
-        <WeatherForecast />
-        <AirPollutinInfo />
+        <div className={styles.weatherAirInfo}>
+          <WeatherForecast />
+          <AirPollutinInfo />
+        </div>
       </main>
     </div>
   );

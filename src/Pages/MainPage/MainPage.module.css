@@ -13,3 +13,12 @@
 
 .btn {
 }
+
+.weatherAirInfo {
+  display: flex;
+  gap: 5px;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  padding: 20px;
+}

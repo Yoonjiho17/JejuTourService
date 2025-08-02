@@ -27,10 +27,10 @@
   margin: 0 10px;
   transition: background-color 0.3s ease, color 0.3s ease; /* 호버 효과 부드럽게 */
   border-radius: 5px;
-  white-space: nowrap; /* 링크 텍스트가 줄바꿈되지 않도록 설정 (선택 사항) */
+  white-space: nowrap; /* 링크 텍스트가 줄바꿈되지 않도록 설정 */
 }
 
 .nav a:hover {
   background-color: #555; /* 마우스 오버 시 배경색 변경 */
-  color: #ffd700; /* 마우스 오버 시 텍스트 색상 변경 (선택 사항) */
+  color: #ffd700; /* 마우스 오버 시 텍스트 색상 변경*/
 }
