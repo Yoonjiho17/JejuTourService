@@ -1,4 +1,6 @@
+import Header from "../Header/Header";
 import { useAttractions } from "./hooks/useAttractions";
+import styles from "./Attractions.module.css";
 
 function Attractions() {
   const { data, isLoading, error } = useAttractions();
@@ -8,12 +10,15 @@ function Attractions() {
 
   return (
     <div>
-      <h2>제주도 관광지 리스트</h2>
-      <ul>
-        {data?.map((item) => (
-          <li>관광지명: {item.관광지명}</li>
-        ))}
-      </ul>
+      <Header />
+      <div className={styles.content}>
+        <h2>제주 관광지 리스트</h2>
+        <ul>
+          {data?.map((item) => (
+            <li>관광지명: {item.관광지명}</li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }

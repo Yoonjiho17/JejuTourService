@@ -1,7 +1,13 @@
+import Header from "../Header/Header";
+import styles from "./TourPlanner.module.css";
+
 function TourPlanner() {
   return (
     <div>
-      <h2>여행 계획</h2>
+      <Header />
+      <div className={styles.content}>
+        <h2>여행 계획</h2>
+      </div>
     </div>
   );
 }

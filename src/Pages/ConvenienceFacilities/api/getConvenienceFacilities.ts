@@ -1,6 +1,6 @@
 import type { ConvenienceFacilities } from "./entity";
 
-const API_KEY = import.meta.env.VITE_API_KEY;
+const API_KEY = import.meta.env.VITE_API_KEY_ENCODING;
 
 export async function getConvenienceFacilities(): Promise<
   ConvenienceFacilities[]

@@ -1,0 +1,15 @@
+.mainBox {
+  display: flex;
+  flex-direction: column;
+}
+
+.mainContent {
+  padding-top: 70px;
+}
+
+.btnBox {
+  display: flex;
+}
+
+.btn {
+}

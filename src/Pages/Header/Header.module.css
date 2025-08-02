@@ -1,0 +1,36 @@
+.header {
+  background-color: #333;
+  color: white;
+  padding: 15px 0;
+  width: 100%;
+  position: fixed; /* 화면에 고정 */
+  top: 0; /* 화면 상단에 붙임 */
+  left: 0; /* 화면 왼쪽에 붙임 */
+  z-index: 1000; /* 다른 콘텐츠 위에 오도록 z-index 설정 */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 1200px; /* 내비게이션 바의 최대 너비 제한 */
+  margin: 0 auto;
+  flex-wrap: wrap; /* 화면이 작아지면 다음 줄로 넘어가도록 설정 */
+}
+
+.nav a {
+  color: white;
+  text-decoration: none; /* 링크 밑줄 제거 */
+  padding: 10px 15px;
+  margin: 0 10px;
+  transition: background-color 0.3s ease, color 0.3s ease; /* 호버 효과 부드럽게 */
+  border-radius: 5px;
+  white-space: nowrap; /* 링크 텍스트가 줄바꿈되지 않도록 설정 (선택 사항) */
+}
+
+.nav a:hover {
+  background-color: #555; /* 마우스 오버 시 배경색 변경 */
+  color: #ffd700; /* 마우스 오버 시 텍스트 색상 변경 (선택 사항) */
+}

@@ -1,4 +1,8 @@
 import { useNavigate } from "react-router-dom";
+import Header from "../Header/Header";
+import WeatherForecast from "../WeatherForecast/WeatherForecast";
+import AirPollutinInfo from "../AirPollutinInfo/AirPollutinInfo";
+import styles from "./MainPage.module.css";
 
 const pages = [
   "숙박업소",
@@ -19,15 +23,23 @@ function MainPage() {
   };
 
   return (
-    <div>
-      <h2>제주도 관광 정보</h2>
-      <div>
-        {pages.map((page) => (
-          <button key={page} onClick={() => handleClick(page)}>
-            {page}
-          </button>
-        ))}
-      </div>
+    <div className={styles.mainBox}>
+      <Header />
+      <main className={styles.mainContent}>
+        <div className={styles.btnBox}>
+          {pages.map((page) => (
+            <button
+              className={styles.btn}
+              key={page}
+              onClick={() => handleClick(page)}
+            >
+              {page}
+            </button>
+          ))}
+        </div>
+        <WeatherForecast />
+        <AirPollutinInfo />
+      </main>
     </div>
   );
 }
