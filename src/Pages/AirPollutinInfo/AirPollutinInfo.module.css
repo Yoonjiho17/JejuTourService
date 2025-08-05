@@ -8,9 +8,7 @@
   background-color: #e2e2e2;
   padding: 10px;
   border-radius: 5px;
-  border: 1px solid transparent;
-  border-right-color: #ffd700;
-  border-bottom-color: #ffd700;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .iconBox {

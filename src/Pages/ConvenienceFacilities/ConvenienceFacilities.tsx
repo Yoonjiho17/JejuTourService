@@ -12,13 +12,16 @@ function ConvenienceFacilities() {
     <div>
       <Header />
       <div className={styles.content}>
-        <h2>제주 편의시설 리스트</h2>
+        <h2 className={styles.title}>제주 편의시설 리스트</h2>
         <ul>
           {data?.map((item) => (
-            <li>
-              편의시설명: {item.편의시설명} [ 편의시설유형: {item.편의시설유형}{" "}
-              ]
-            </li>
+            <div className={styles.listBox}>
+              <div className={styles.name}>
+                <strong>{item.편의시설명}</strong> / {item.편의시설유형}
+              </div>
+              <div>주소: {item.소재지도로명주소}</div>
+              <div>전화번호: {item.소재지전화번호}</div>
+            </div>
           ))}
         </ul>
       </div>

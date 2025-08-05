@@ -8,15 +8,32 @@
 }
 
 .btnBox {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  row-gap: 50px;
+  column-gap: 160px;
+  padding: 50px 120px;
 }
 
 .btn {
+  height: 150px;
+  background-color: white;
+  border-radius: 5px;
+  border: 2px solid transparent;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  font-size: x-large;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #555; /* 마우스 오버 시 배경색 변경 */
+  color: #ffd700; /* 마우스 오버 시 텍스트 색상 변경*/
 }
 
 .weatherAirInfo {
   display: flex;
-  gap: 5px;
+  gap: 10px;
   position: fixed;
   bottom: 0;
   right: 0;

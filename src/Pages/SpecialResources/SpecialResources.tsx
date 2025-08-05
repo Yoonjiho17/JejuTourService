@@ -12,13 +12,18 @@ function SpecialResources() {
     <div>
       <Header />
       <div className={styles.content}>
-        <h2>제주 마을별 특화자원 리스트</h2>
+        <h2 className={styles.title}>제주 마을별 특화자원 리스트</h2>
         <ul>
           {data?.map((item) => (
-            <li>
-              마을명: {item.마을명} [ 특화자원명: {item.특화자원명},
-              특화자원유형: {item.특화자원유형} ]
-            </li>
+            <div className={styles.listBox}>
+              <div className={styles.name}>
+                <strong>{item.마을명}</strong>
+              </div>
+              <div>
+                특화자원: {item.특화자원명} ({item.특화자원내용})
+              </div>
+              <div>주소: {item.소재지지번주소}</div>
+            </div>
           ))}
         </ul>
       </div>

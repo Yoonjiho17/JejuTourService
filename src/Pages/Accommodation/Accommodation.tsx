@@ -12,10 +12,16 @@ function Accommodation() {
     <div>
       <Header />
       <div className={styles.content}>
-        <h2>제주 숙박업소 리스트</h2>
+        <h2 className={styles.title}>제주 숙박업소 리스트</h2>
         <ul>
           {data?.map((item) => (
-            <li>숙박업소명: {item.숙박업소명}</li>
+            <div className={styles.listBox}>
+              <div className={styles.name}>
+                <strong>{item.숙박업소명}</strong>
+              </div>
+              <div>주소: {item.소재지도로명주소}</div>
+              <div>전화번호: {item.숙박업소전화번호}</div>
+            </div>
           ))}
         </ul>
       </div>
