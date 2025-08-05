@@ -4,7 +4,7 @@ import styles from "./AirPollutinInfo.module.css";
 function AirPollutinInfo() {
   const { data, isLoading, error } = useAirPollutinInfo();
 
-  if (isLoading) return <div>대기질 정보를 불러오는 중...</div>;
+  if (isLoading) return <div className={styles.loading}></div>;
   if (error) return <div>데이터를 불러오는 데 실패했습니다.</div>;
 
   const firstItem = data?.[0];

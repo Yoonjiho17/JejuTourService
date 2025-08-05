@@ -4,7 +4,7 @@ import styles from "./WeatherForecast.module.css";
 function WeatherForecast() {
   const { data, isLoading, error } = useWeatherForecast();
 
-  if (isLoading) return <div>날씨 정보를 불러오는 중...</div>;
+  if (isLoading) return <div className={styles.loading}></div>;
   if (error) return <div>날씨 정보를 불러오는 데 실패했습니다.</div>;
 
   const skyItem = data?.find((item) => item.category === "SKY"); //하늘상태

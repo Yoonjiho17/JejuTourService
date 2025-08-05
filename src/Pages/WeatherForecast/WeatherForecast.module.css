@@ -18,3 +18,11 @@
 .icon {
   font-size: 50px;
 }
+
+.loading {
+  width: 100px;
+  height: auto;
+  background-color: #eeeeee;
+  padding: 10px;
+  border-radius: 5px;
+}

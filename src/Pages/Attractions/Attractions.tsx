@@ -1,10 +1,10 @@
 import Header from "../Header/Header";
 import styles from "./Attractions.module.css";
-import attractionsJson from "../../../public/jeju_tourism_spots.json";
-import type { Attractions } from "./api/entity";
+import attractionsJson from "../../data/jeju_tourism_spots.json";
+import type { AttractionsType } from "./api/entity";
 
 function Attractions() {
-  const attractionsData = attractionsJson;
+  const attractionsData: AttractionsType[] = attractionsJson;
 
   return (
     <div>
