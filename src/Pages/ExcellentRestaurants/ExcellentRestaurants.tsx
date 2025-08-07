@@ -1,4 +1,3 @@
-import Header from "../Header/Header";
 import { useExcellentRestaurants } from "./hooks/useExcellentRestaurants";
 import styles from "./ExcellentRestaurants.module.css";
 
@@ -10,7 +9,6 @@ function ExcellentRestaurants() {
 
   return (
     <div>
-      <Header />
       <div className={styles.content}>
         <h2 className={styles.title}>제주 모범음식점 리스트</h2>
         <ul>

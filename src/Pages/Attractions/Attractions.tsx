@@ -1,4 +1,3 @@
-import Header from "../Header/Header";
 import styles from "./Attractions.module.css";
 import attractionsJson from "../../data/jeju_tourism_spots.json";
 import type { AttractionsType } from "./api/entity";
@@ -8,7 +7,6 @@ function Attractions() {
 
   return (
     <div>
-      <Header />
       <div className={styles.content}>
         <h2 className={styles.title}>제주 관광지 리스트</h2>
         <ul>

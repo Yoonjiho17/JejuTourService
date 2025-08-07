@@ -1,9 +1,7 @@
 import { useNavigate } from "react-router-dom";
-import Header from "../Header/Header";
 import WeatherForecast from "../WeatherForecast/WeatherForecast";
 import AirPollutinInfo from "../AirPollutinInfo/AirPollutinInfo";
 import styles from "./MainPage.module.css";
-import Footer from "../Footer/Footer";
 
 const pages = [
   "숙박업소",
@@ -25,7 +23,6 @@ function MainPage() {
 
   return (
     <div className={styles.mainBox}>
-      <Header />
       <main className={styles.mainContent}>
         <div className={styles.btnBox}>
           {pages.map((page) => (
@@ -43,7 +40,6 @@ function MainPage() {
           <AirPollutinInfo />
         </div>
       </main>
-      <Footer />
     </div>
   );
 }

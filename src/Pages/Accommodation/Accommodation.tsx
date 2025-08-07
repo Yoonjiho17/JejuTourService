@@ -1,4 +1,3 @@
-import Header from "../Header/Header";
 import { useAccommodation } from "./hooks/useAccommodation";
 import styles from "./Accommodation.module.css";
 
@@ -10,7 +9,6 @@ function Accommodation() {
 
   return (
     <div>
-      <Header />
       <div className={styles.content}>
         <h2 className={styles.title}>제주 숙박업소 리스트</h2>
         <ul>

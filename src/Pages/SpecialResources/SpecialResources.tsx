@@ -1,4 +1,3 @@
-import Header from "../Header/Header";
 import { useSpecialResources } from "./hooks/useSpecialResources";
 import styles from "./SpecialResources.module.css";
 
@@ -10,7 +9,6 @@ function SpecialResources() {
 
   return (
     <div>
-      <Header />
       <div className={styles.content}>
         <h2 className={styles.title}>제주 마을별 특화자원 리스트</h2>
         <ul>

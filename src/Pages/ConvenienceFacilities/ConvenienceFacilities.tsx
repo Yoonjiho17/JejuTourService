@@ -1,4 +1,3 @@
-import Header from "../Header/Header";
 import { useConvenienceFacilities } from "./hooks/useConvenienceFacilities";
 import styles from "./ConvenienceFacilities.module.css";
 
@@ -10,7 +9,6 @@ function ConvenienceFacilities() {
 
   return (
     <div>
-      <Header />
       <div className={styles.content}>
         <h2 className={styles.title}>제주 편의시설 리스트</h2>
         <ul>

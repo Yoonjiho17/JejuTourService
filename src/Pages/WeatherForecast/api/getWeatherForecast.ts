@@ -1,6 +1,6 @@
 import axios from "axios";
-import getToday from "../hooks/getToday";
-import getBaseTime from "../hooks/getBaseTime";
+import getToday from "../../../utils/getToday";
+import getBaseTime from "../../../utils/getBaseTime";
 import type { ForecastItem } from "./entity";
 
 const API_KEY = import.meta.env.VITE_API_KEY_DECODING;

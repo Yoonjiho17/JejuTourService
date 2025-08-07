@@ -1,6 +1,5 @@
 import { useState } from "react";
 import styles from "./TourPlanner.module.css";
-import Header from "../Header/Header";
 
 interface PlanItem {
   time: string;
@@ -52,7 +51,6 @@ function TourPlanner() {
 
   return (
     <div>
-      <Header />
       <div className={styles.content}>
         <h2 className={styles.title}>여행 일정 계획</h2>
         <button className={styles.addDayButton} onClick={addNewDay}>

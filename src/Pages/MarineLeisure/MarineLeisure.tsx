@@ -1,4 +1,3 @@
-import Header from "../Header/Header";
 import { useMarineLeisure } from "./hooks/useMarineLeisure";
 import styles from "./MarineLeisure.module.css";
 
@@ -10,7 +9,6 @@ function MarineLeisure() {
 
   return (
     <div>
-      <Header />
       <div className={styles.content}>
         <h2 className={styles.title}>제주 해양레저스포츠 리스트</h2>
         <ul>

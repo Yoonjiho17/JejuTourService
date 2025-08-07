@@ -1,4 +1,3 @@
-import Header from "../Header/Header";
 import { useSafetyFacilities } from "./hooks/useSafetyFacilities";
 import styles from "./SafetyFacilities.module.css";
 
@@ -10,7 +9,6 @@ function SafetyFacilities() {
 
   return (
     <div>
-      <Header />
       <div className={styles.content}>
         <h2 className={styles.title}>제주 안전시설 리스트</h2>
         <ul>
