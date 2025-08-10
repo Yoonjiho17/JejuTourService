@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { useExcellentRestaurants } from "./hooks/useExcellentRestaurants";
 import styles from "./ExcellentRestaurants.module.css";
+import type { ExcellentRestaurants } from "./api/entity";
 
 function ExcellentRestaurants() {
   const itemsPerPage = 10;
   const pagesPerGroup = 10;
 
   const [currentPage, setCurrentPage] = useState(1);
+  const [detail, setDetail] = useState<ExcellentRestaurants | null>(null);
 
   const { data, isLoading, error } = useExcellentRestaurants(
     currentPage,
@@ -43,13 +45,25 @@ function ExcellentRestaurants() {
     }
   };
 
+  const handleDetailClick = (item: ExcellentRestaurants) => {
+    setDetail(item);
+  };
+
+  const handleDetailDeleteClick = () => {
+    setDetail(null);
+  };
+
   return (
     <div className={styles.content}>
       <h2 className={styles.title}>제주 모범음식점 리스트</h2>
 
       <ul>
-        {data.data.map((item) => (
-          <div className={styles.listBox}>
+        {data.data.map((item, index) => (
+          <div
+            key={index}
+            className={styles.listButton}
+            onClick={() => handleDetailClick(item)}
+          >
             <div className={styles.name}>
               <strong>{item.업소명}</strong>
             </div>
@@ -86,6 +100,26 @@ function ExcellentRestaurants() {
           &gt;
         </button>
       </div>
+
+      {detail && (
+        <div className={styles.modalOverlay}>
+          <div className={styles.modal}>
+            <div className={styles.modalHeader}>
+              <h2>{detail.업소명}</h2>
+              <button
+                className={styles.deleteButton}
+                onClick={handleDetailDeleteClick}
+              >
+                &times;
+              </button>
+            </div>
+            <p>전화번호: {detail.전화번호}</p>
+            <p>주소: {detail["소재지(도로명)"]}</p>
+            <p>행정시: {detail.행정시}</p>
+            <p>데이터기준일자: {detail.데이터기준일자}</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { useSpecialResources } from "./hooks/useSpecialResources";
 import styles from "./SpecialResources.module.css";
+import type { SpecialResources } from "./api/entity";
 
 function SpecialResources() {
   const itemsPerPage = 10;
   const pagesPerGroup = 10;
 
   const [currentPage, setCurrentPage] = useState(1);
+  const [detail, setDetail] = useState<SpecialResources | null>(null);
 
   const { data, isLoading, error } = useSpecialResources(
     currentPage,
@@ -43,19 +45,29 @@ function SpecialResources() {
     }
   };
 
+  const handleDetailClick = (item: SpecialResources) => {
+    setDetail(item);
+  };
+
+  const handleDetailDeleteClick = () => {
+    setDetail(null);
+  };
+
   return (
     <div className={styles.content}>
       <h2 className={styles.title}>제주 마을별 특화자원 리스트</h2>
 
       <ul>
-        {data.data.map((item) => (
-          <div className={styles.listBox}>
+        {data.data.map((item, index) => (
+          <div
+            key={index}
+            className={styles.listButton}
+            onClick={() => handleDetailClick(item)}
+          >
             <div className={styles.name}>
               <strong>{item.마을명}</strong>
             </div>
-            <div>
-              특화자원: {item.특화자원명} ({item.특화자원내용})
-            </div>
+            <div>특화자원: {item.특화자원명}</div>
             <div>주소: {item.소재지지번주소}</div>
           </div>
         ))}
@@ -88,6 +100,31 @@ function SpecialResources() {
           &gt;
         </button>
       </div>
+
+      {detail && (
+        <div className={styles.modalOverlay}>
+          <div className={styles.modal}>
+            <div className={styles.modalHeader}>
+              <h2>{detail.마을명}</h2>
+              <button
+                className={styles.deleteButton}
+                onClick={handleDetailDeleteClick}
+              >
+                &times;
+              </button>
+            </div>
+            <p>특화자원: {detail.특화자원명}</p>
+            <p>유형: {detail.특화자원유형}</p>
+            <p>특화자원상세: {detail.특화자원내용}</p>
+            <p>전화번호: {detail.소재지전화번호}</p>
+            <p>주소: {detail.소재지지번주소}</p>
+            <p>요금: {detail.요금정보}</p>
+            <p>편의시설: {detail.편의시설}</p>
+            <p>이용시간: {detail.이용시간}</p>
+            <p>휴무일: {detail.휴무일}</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

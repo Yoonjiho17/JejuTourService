@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { useMarineLeisure } from "./hooks/useMarineLeisure";
 import styles from "./MarineLeisure.module.css";
+import type { MarineLeisure } from "./api/entity";
 
 function MarineLeisure() {
   const itemsPerPage = 10;
   const pagesPerGroup = 10;
 
   const [currentPage, setCurrentPage] = useState(1);
+  const [detail, setDetail] = useState<MarineLeisure | null>(null);
 
   const { data, isLoading, error } = useMarineLeisure(
     currentPage,
@@ -43,13 +45,25 @@ function MarineLeisure() {
     }
   };
 
+  const handleDetailClick = (item: MarineLeisure) => {
+    setDetail(item);
+  };
+
+  const handleDetailDeleteClick = () => {
+    setDetail(null);
+  };
+
   return (
     <div className={styles.content}>
       <h2 className={styles.title}>제주 해양레저스포츠 리스트</h2>
 
       <ul>
-        {data.data.map((item) => (
-          <div className={styles.listBox}>
+        {data.data.map((item, index) => (
+          <div
+            key={index}
+            className={styles.listButton}
+            onClick={() => handleDetailClick(item)}
+          >
             <div className={styles.name}>
               <strong>{item.사업장명}</strong> / {item.해양레저스포츠유형}
             </div>
@@ -86,6 +100,32 @@ function MarineLeisure() {
           &gt;
         </button>
       </div>
+
+      {detail && (
+        <div className={styles.modalOverlay}>
+          <div className={styles.modal}>
+            <div className={styles.modalHeader}>
+              <h2>{detail.사업장명}</h2>
+              <button
+                className={styles.deleteButton}
+                onClick={handleDetailDeleteClick}
+              >
+                &times;
+              </button>
+            </div>
+            <p>전화번호: {detail.소재지전화번호}</p>
+            <p>주소: {detail.소재지도로명주소}</p>
+            <p>마을명: {detail.마을명}</p>
+            <p>스포츠유형: {detail.해양레저스포츠유형}</p>
+            <p>문화체육업종명: {detail.문화체육업종명}</p>
+            <p>편익시설: {detail.편익시설현황}</p>
+            <p>주변환경: {detail.주변환경유형}</p>
+            <p>안전시설: {detail.안전시설현황}</p>
+            <p>주차가능수: {detail.주차가능수}</p>
+            <p>영업유무: {detail.상세영업상태명}</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

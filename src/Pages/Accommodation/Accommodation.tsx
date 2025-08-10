@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { useAccommodation } from "./hooks/useAccommodation";
 import styles from "./Accommodation.module.css";
+import type { Accommodation } from "./api/entity";
 
 function Accommodation() {
   const itemsPerPage = 10;
   const pagesPerGroup = 10;
 
   const [currentPage, setCurrentPage] = useState(1);
+  const [detail, setDetail] = useState<Accommodation | null>(null);
 
   const { data, isLoading, error } = useAccommodation(
     currentPage,
@@ -43,13 +45,25 @@ function Accommodation() {
     }
   };
 
+  const handleDetailClick = (item: Accommodation) => {
+    setDetail(item);
+  };
+
+  const handleDetailDeleteClick = () => {
+    setDetail(null);
+  };
+
   return (
     <div className={styles.content}>
       <h2 className={styles.title}>제주 숙박업소 리스트</h2>
 
       <ul>
         {data.data.map((item, index) => (
-          <div key={index} className={styles.listBox}>
+          <div
+            key={index}
+            className={styles.listButton}
+            onClick={() => handleDetailClick(item)}
+          >
             <div className={styles.name}>
               <strong>{item.숙박업소명}</strong>
             </div>
@@ -86,6 +100,28 @@ function Accommodation() {
           &gt;
         </button>
       </div>
+
+      {detail && (
+        <div className={styles.modalOverlay}>
+          <div className={styles.modal}>
+            <div className={styles.modalHeader}>
+              <h2>{detail.숙박업소명}</h2>
+              <button
+                className={styles.deleteButton}
+                onClick={handleDetailDeleteClick}
+              >
+                &times;
+              </button>
+            </div>
+            <p>전화번호: {detail.숙박업소전화번호}</p>
+            <p>주소: {detail.소재지지번주소}</p>
+            <p>마을명: {detail.마을명}</p>
+            <p>객실수: {detail.객실수}</p>
+            <p>영업유무: {detail.상세영업상태명}</p>
+            <p>기타: {detail.업태구분명}</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { useConvenienceFacilities } from "./hooks/useConvenienceFacilities";
 import styles from "./ConvenienceFacilities.module.css";
+import type { ConvenienceFacilities } from "./api/entity";
 
 function ConvenienceFacilities() {
   const itemsPerPage = 10;
   const pagesPerGroup = 10;
 
   const [currentPage, setCurrentPage] = useState(1);
+  const [detail, setDetail] = useState<ConvenienceFacilities | null>(null);
 
   const { data, isLoading, error } = useConvenienceFacilities(
     currentPage,
@@ -43,17 +45,29 @@ function ConvenienceFacilities() {
     }
   };
 
+  const handleDetailClick = (item: ConvenienceFacilities) => {
+    setDetail(item);
+  };
+
+  const handleDetailDeleteClick = () => {
+    setDetail(null);
+  };
+
   return (
     <div className={styles.content}>
       <h2 className={styles.title}>제주 편의시설 리스트</h2>
 
       <ul>
-        {data.data.map((item) => (
-          <div className={styles.listBox}>
+        {data.data.map((item, index) => (
+          <div
+            key={index}
+            className={styles.listButton}
+            onClick={() => handleDetailClick(item)}
+          >
             <div className={styles.name}>
               <strong>{item.편의시설명}</strong> / {item.편의시설유형}
             </div>
-            <div>주소: {item.소재지도로명주소}</div>
+            <div>주소: {item.소재지지번주소}</div>
             <div>전화번호: {item.소재지전화번호}</div>
           </div>
         ))}
@@ -86,6 +100,28 @@ function ConvenienceFacilities() {
           &gt;
         </button>
       </div>
+
+      {detail && (
+        <div className={styles.modalOverlay}>
+          <div className={styles.modal}>
+            <div className={styles.modalHeader}>
+              <h2>{detail.편의시설명}</h2>
+              <button
+                className={styles.deleteButton}
+                onClick={handleDetailDeleteClick}
+              >
+                &times;
+              </button>
+            </div>
+            <p>전화번호: {detail.소재지전화번호}</p>
+            <p>주소: {detail.소재지지번주소}</p>
+            <p>마을명: {detail.마을명}</p>
+            <p>편의시설유형: {detail.편의시설유형}</p>
+            <p>휴무일: {detail.휴무일}</p>
+            <p>영업유무: {detail.상세영업상태명}</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

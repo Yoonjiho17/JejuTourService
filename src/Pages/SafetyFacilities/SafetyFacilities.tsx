@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { useSafetyFacilities } from "./hooks/useSafetyFacilities";
 import styles from "./SafetyFacilities.module.css";
+import type { SafetyFacilities } from "./api/entity";
 
 function SafetyFacilities() {
   const itemsPerPage = 10;
   const pagesPerGroup = 10;
 
   const [currentPage, setCurrentPage] = useState(1);
+  const [detail, setDetail] = useState<SafetyFacilities | null>(null);
 
   const { data, isLoading, error } = useSafetyFacilities(
     currentPage,
@@ -43,12 +45,25 @@ function SafetyFacilities() {
     }
   };
 
+  const handleDetailClick = (item: SafetyFacilities) => {
+    setDetail(item);
+  };
+
+  const handleDetailDeleteClick = () => {
+    setDetail(null);
+  };
+
   return (
     <div className={styles.content}>
       <h2 className={styles.title}>제주 안전시설 리스트</h2>
+
       <ul>
-        {data.data.map((item) => (
-          <div className={styles.listBox}>
+        {data.data.map((item, index) => (
+          <div
+            key={index}
+            className={styles.listButton}
+            onClick={() => handleDetailClick(item)}
+          >
             <div className={styles.name}>
               <strong>{item.안전시설명}</strong> / {item.안전시설유형}
             </div>
@@ -85,6 +100,29 @@ function SafetyFacilities() {
           &gt;
         </button>
       </div>
+
+      {detail && (
+        <div className={styles.modalOverlay}>
+          <div className={styles.modal}>
+            <div className={styles.modalHeader}>
+              <h2>{detail.안전시설명}</h2>
+              <button
+                className={styles.deleteButton}
+                onClick={handleDetailDeleteClick}
+              >
+                &times;
+              </button>
+            </div>
+            <p>전화번호: {detail.소재지전화번호}</p>
+            <p>주소: {detail.소재지도로명주소}</p>
+            <p>마을명: {detail.마을명}</p>
+            <p>유형: {detail.안전시설유형}</p>
+            <p>운영시간: {detail.운영시간}</p>
+            <p>휴무일: {detail.휴무일}</p>
+            <p>영업유무: {detail.상세영업상태명}</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

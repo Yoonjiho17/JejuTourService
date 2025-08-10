@@ -1,27 +1,75 @@
 .content {
-  padding-top: 70px;
+  padding-top: 75px;
 }
 
 .title {
   padding-left: 45px;
 }
 
-.listBox {
-  margin-top: 10px;
-  margin-right: 45px;
+ul {
+  margin: 0 auto;
+}
+
+.listButton {
+  width: 97%;
+  margin-bottom: 10px;
   padding: 10px;
   border-radius: 5px;
+  border: solid transparent;
   background-color: whitesmoke;
+  text-align: left;
+  cursor: pointer;
+}
+
+.listButton:hover {
+  border: #ddd solid;
+  transition: border 0.3s ease;
 }
 
 .name {
   font-size: large;
 }
 
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  width: 70%;
+  height: 70%;
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.deleteButton {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 0.2rem 0.5rem;
+  cursor: pointer;
+}
+
 .pagination {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-top: 5px;
   padding-bottom: 15px;
 }
 
