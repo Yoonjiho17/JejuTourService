@@ -22,8 +22,16 @@ function TourPlanner() {
 
   const addPlan = () => {
     if (!newTime || !newContent) return alert("시간과 내용을 모두 입력하세요.");
+    const newPlan = { time: newTime, content: newContent };
     const updatedDays = [...days];
-    updatedDays[selectedDay].push({ time: newTime, content: newContent });
+    const insertIndex = updatedDays[selectedDay].findIndex(
+      (plan) => newPlan.time <= plan.time
+    );
+    if (insertIndex === -1) {
+      updatedDays[selectedDay].push(newPlan);
+    } else {
+      updatedDays[selectedDay].splice(insertIndex, 0, newPlan);
+    }
     setDays(updatedDays);
     setShowModal(false);
   };
