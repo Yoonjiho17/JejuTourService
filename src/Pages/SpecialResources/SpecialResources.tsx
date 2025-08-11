@@ -1,9 +1,14 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useSpecialResources } from "./hooks/useSpecialResources";
 import styles from "./SpecialResources.module.css";
 import type { SpecialResourcesType } from "./api/entity";
+import { usePlan } from "../../component/PlanContext";
 
 function SpecialResources() {
+  const navigate = useNavigate();
+  const { openModal } = usePlan();
+
   const itemsPerPage = 10;
   const pagesPerGroup = 10;
 
@@ -51,6 +56,12 @@ function SpecialResources() {
 
   const handleDetailDeleteClick = () => {
     setDetail(null);
+  };
+
+  const handleAddPlan = (특화자원명: string) => {
+    openModal(특화자원명);
+    handleDetailDeleteClick();
+    navigate(`/여행일정계획`);
   };
 
   return (
@@ -122,6 +133,12 @@ function SpecialResources() {
             <p>편의시설: {detail.편의시설}</p>
             <p>이용시간: {detail.이용시간}</p>
             <p>휴무일: {detail.휴무일}</p>
+            <button
+              className={styles.addPlan}
+              onClick={() => handleAddPlan(detail.특화자원명)}
+            >
+              일정에 추가
+            </button>
           </div>
         </div>
       )}

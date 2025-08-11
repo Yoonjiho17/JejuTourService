@@ -1,9 +1,14 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAccommodation } from "./hooks/useAccommodation";
 import styles from "./Accommodation.module.css";
 import type { AccommodationType } from "./api/entity";
+import { usePlan } from "../../component/PlanContext";
 
 function Accommodation() {
+  const navigate = useNavigate();
+  const { openModal } = usePlan();
+
   const itemsPerPage = 10;
   const pagesPerGroup = 10;
 
@@ -51,6 +56,12 @@ function Accommodation() {
 
   const handleDetailDeleteClick = () => {
     setDetail(null);
+  };
+
+  const handleAddPlan = (숙박업소명: string) => {
+    openModal(숙박업소명);
+    handleDetailDeleteClick();
+    navigate(`/여행일정계획`);
   };
 
   return (
@@ -119,6 +130,12 @@ function Accommodation() {
             <p>객실수: {detail.객실수}</p>
             <p>영업유무: {detail.상세영업상태명}</p>
             <p>기타: {detail.업태구분명}</p>
+            <button
+              className={styles.addPlan}
+              onClick={() => handleAddPlan(detail.숙박업소명)}
+            >
+              일정에 추가
+            </button>
           </div>
         </div>
       )}

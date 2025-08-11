@@ -1,9 +1,14 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./Attractions.module.css";
 import attractionsJson from "../../data/jeju_tourism_spots.json";
 import type { AttractionsType } from "./api/entity";
+import { usePlan } from "../../component/PlanContext";
 
 function Attractions() {
+  const navigate = useNavigate();
+  const { openModal } = usePlan();
+
   const attractionsData: AttractionsType[] = attractionsJson;
 
   const [detail, setDetail] = useState<AttractionsType | null>(null);
@@ -14,6 +19,12 @@ function Attractions() {
 
   const handleDetailDeleteClick = () => {
     setDetail(null);
+  };
+
+  const handleAddPlan = (관광지명: string) => {
+    openModal(관광지명);
+    handleDetailDeleteClick();
+    navigate(`/여행일정계획`);
   };
 
   return (
@@ -59,6 +70,12 @@ function Attractions() {
             <p>요금: {detail.요금정보}</p>
             <p>편의시설: {detail.편의시설}</p>
             <p>휴무일: {detail.휴무일}</p>
+            <button
+              className={styles.addPlan}
+              onClick={() => handleAddPlan(detail.관광지명)}
+            >
+              일정에 추가
+            </button>
           </div>
         </div>
       )}

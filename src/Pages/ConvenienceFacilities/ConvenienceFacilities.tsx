@@ -1,9 +1,14 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useConvenienceFacilities } from "./hooks/useConvenienceFacilities";
 import styles from "./ConvenienceFacilities.module.css";
 import type { ConvenienceFacilitiesType } from "./api/entity";
+import { usePlan } from "../../component/PlanContext";
 
 function ConvenienceFacilities() {
+  const navigate = useNavigate();
+  const { openModal } = usePlan();
+
   const itemsPerPage = 10;
   const pagesPerGroup = 10;
 
@@ -51,6 +56,12 @@ function ConvenienceFacilities() {
 
   const handleDetailDeleteClick = () => {
     setDetail(null);
+  };
+
+  const handleAddPlan = (편의시설명: string) => {
+    openModal(편의시설명);
+    handleDetailDeleteClick();
+    navigate(`/여행일정계획`);
   };
 
   return (
@@ -119,6 +130,12 @@ function ConvenienceFacilities() {
             <p>편의시설유형: {detail.편의시설유형}</p>
             <p>휴무일: {detail.휴무일}</p>
             <p>영업유무: {detail.상세영업상태명}</p>
+            <button
+              className={styles.addPlan}
+              onClick={() => handleAddPlan(detail.편의시설명)}
+            >
+              일정에 추가
+            </button>
           </div>
         </div>
       )}

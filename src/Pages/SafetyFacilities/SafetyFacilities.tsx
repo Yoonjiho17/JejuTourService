@@ -1,9 +1,14 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useSafetyFacilities } from "./hooks/useSafetyFacilities";
 import styles from "./SafetyFacilities.module.css";
 import type { SafetyFacilitiesType } from "./api/entity";
+import { usePlan } from "../../component/PlanContext";
 
 function SafetyFacilities() {
+  const navigate = useNavigate();
+  const { openModal } = usePlan();
+
   const itemsPerPage = 10;
   const pagesPerGroup = 10;
 
@@ -51,6 +56,12 @@ function SafetyFacilities() {
 
   const handleDetailDeleteClick = () => {
     setDetail(null);
+  };
+
+  const handleAddPlan = (안전시설명: string) => {
+    openModal(안전시설명);
+    handleDetailDeleteClick();
+    navigate(`/여행일정계획`);
   };
 
   return (
@@ -120,6 +131,12 @@ function SafetyFacilities() {
             <p>운영시간: {detail.운영시간}</p>
             <p>휴무일: {detail.휴무일}</p>
             <p>영업유무: {detail.상세영업상태명}</p>
+            <button
+              className={styles.addPlan}
+              onClick={() => handleAddPlan(detail.안전시설명)}
+            >
+              일정에 추가
+            </button>
           </div>
         </div>
       )}

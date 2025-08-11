@@ -47,7 +47,6 @@ ul {
   padding: 1.5rem;
   border-radius: 8px;
   width: 70%;
-  height: 70%;
 }
 
 .modalHeader {
@@ -62,5 +61,15 @@ ul {
   border: none;
   border-radius: 4px;
   padding: 0.2rem 0.5rem;
+  cursor: pointer;
+}
+
+.addPlan {
+  margin-bottom: 0.5rem;
+  padding: 0.3rem 0.7rem;
+  background-color: #2196f3;
+  color: white;
+  border: none;
+  border-radius: 4px;
   cursor: pointer;
 }

@@ -1,9 +1,14 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useExcellentRestaurants } from "./hooks/useExcellentRestaurants";
 import styles from "./ExcellentRestaurants.module.css";
 import type { ExcellentRestaurantsType } from "./api/entity";
+import { usePlan } from "../../component/PlanContext";
 
 function ExcellentRestaurants() {
+  const navigate = useNavigate();
+  const { openModal } = usePlan();
+
   const itemsPerPage = 10;
   const pagesPerGroup = 10;
 
@@ -51,6 +56,12 @@ function ExcellentRestaurants() {
 
   const handleDetailDeleteClick = () => {
     setDetail(null);
+  };
+
+  const handleAddPlan = (업소명: string) => {
+    openModal(업소명);
+    handleDetailDeleteClick();
+    navigate(`/여행일정계획`);
   };
 
   return (
@@ -117,6 +128,12 @@ function ExcellentRestaurants() {
             <p>주소: {detail["소재지(도로명)"]}</p>
             <p>행정시: {detail.행정시}</p>
             <p>데이터기준일자: {detail.데이터기준일자}</p>
+            <button
+              className={styles.addPlan}
+              onClick={() => handleAddPlan(detail.업소명)}
+            >
+              일정에 추가
+            </button>
           </div>
         </div>
       )}

@@ -1,9 +1,14 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useMarineLeisure } from "./hooks/useMarineLeisure";
 import styles from "./MarineLeisure.module.css";
 import type { MarineLeisureType } from "./api/entity";
+import { usePlan } from "../../component/PlanContext";
 
 function MarineLeisure() {
+  const navigate = useNavigate();
+  const { openModal } = usePlan();
+
   const itemsPerPage = 10;
   const pagesPerGroup = 10;
 
@@ -51,6 +56,12 @@ function MarineLeisure() {
 
   const handleDetailDeleteClick = () => {
     setDetail(null);
+  };
+
+  const handleAddPlan = (사업장명: string) => {
+    openModal(사업장명);
+    handleDetailDeleteClick();
+    navigate(`/여행일정계획`);
   };
 
   return (
@@ -123,6 +134,12 @@ function MarineLeisure() {
             <p>안전시설: {detail.안전시설현황}</p>
             <p>주차가능수: {detail.주차가능수}</p>
             <p>영업유무: {detail.상세영업상태명}</p>
+            <button
+              className={styles.addPlan}
+              onClick={() => handleAddPlan(detail.사업장명)}
+            >
+              일정에 추가
+            </button>
           </div>
         </div>
       )}
