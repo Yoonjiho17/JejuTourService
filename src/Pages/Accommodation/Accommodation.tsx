@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { useAccommodation } from "./hooks/useAccommodation";
 import styles from "./Accommodation.module.css";
-import type { Accommodation } from "./api/entity";
+import type { AccommodationType } from "./api/entity";
 
 function Accommodation() {
   const itemsPerPage = 10;
   const pagesPerGroup = 10;
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [detail, setDetail] = useState<Accommodation | null>(null);
+  const [detail, setDetail] = useState<AccommodationType | null>(null);
 
   const { data, isLoading, error } = useAccommodation(
     currentPage,
@@ -45,7 +45,7 @@ function Accommodation() {
     }
   };
 
-  const handleDetailClick = (item: Accommodation) => {
+  const handleDetailClick = (item: AccommodationType) => {
     setDetail(item);
   };
 

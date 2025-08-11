@@ -1,11 +1,11 @@
-import type { SpecialResources } from "./entity";
+import type { SpecialResourcesType } from "./entity";
 
 const API_KEY = import.meta.env.VITE_API_KEY_ENCODING;
 
 export async function getSpecialResources(
   page: number,
   perPage: number
-): Promise<{ data: SpecialResources[]; totalCount: number }> {
+): Promise<{ data: SpecialResourcesType[]; totalCount: number }> {
   const url = `https://api.odcloud.kr/api/15109343/v1/uddi:9c1ddec7-b21e-40ea-afbe-ece4dfd0bc5a?page=${page}&perPage=${perPage}&serviceKey=${API_KEY}`;
 
   const response = await fetch(url);

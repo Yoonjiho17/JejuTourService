@@ -1,4 +1,4 @@
-export interface ExcellentRestaurants {
+export interface ExcellentRestaurantsType {
   행정시: string;
   업소명: string;
   "소재지(도로명)": string;

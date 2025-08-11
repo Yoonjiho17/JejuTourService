@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { useConvenienceFacilities } from "./hooks/useConvenienceFacilities";
 import styles from "./ConvenienceFacilities.module.css";
-import type { ConvenienceFacilities } from "./api/entity";
+import type { ConvenienceFacilitiesType } from "./api/entity";
 
 function ConvenienceFacilities() {
   const itemsPerPage = 10;
   const pagesPerGroup = 10;
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [detail, setDetail] = useState<ConvenienceFacilities | null>(null);
+  const [detail, setDetail] = useState<ConvenienceFacilitiesType | null>(null);
 
   const { data, isLoading, error } = useConvenienceFacilities(
     currentPage,
@@ -45,7 +45,7 @@ function ConvenienceFacilities() {
     }
   };
 
-  const handleDetailClick = (item: ConvenienceFacilities) => {
+  const handleDetailClick = (item: ConvenienceFacilitiesType) => {
     setDetail(item);
   };
 

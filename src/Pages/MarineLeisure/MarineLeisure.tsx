@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { useMarineLeisure } from "./hooks/useMarineLeisure";
 import styles from "./MarineLeisure.module.css";
-import type { MarineLeisure } from "./api/entity";
+import type { MarineLeisureType } from "./api/entity";
 
 function MarineLeisure() {
   const itemsPerPage = 10;
   const pagesPerGroup = 10;
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [detail, setDetail] = useState<MarineLeisure | null>(null);
+  const [detail, setDetail] = useState<MarineLeisureType | null>(null);
 
   const { data, isLoading, error } = useMarineLeisure(
     currentPage,
@@ -45,7 +45,7 @@ function MarineLeisure() {
     }
   };
 
-  const handleDetailClick = (item: MarineLeisure) => {
+  const handleDetailClick = (item: MarineLeisureType) => {
     setDetail(item);
   };
 

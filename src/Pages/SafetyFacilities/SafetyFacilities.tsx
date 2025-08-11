@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { useSafetyFacilities } from "./hooks/useSafetyFacilities";
 import styles from "./SafetyFacilities.module.css";
-import type { SafetyFacilities } from "./api/entity";
+import type { SafetyFacilitiesType } from "./api/entity";
 
 function SafetyFacilities() {
   const itemsPerPage = 10;
   const pagesPerGroup = 10;
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [detail, setDetail] = useState<SafetyFacilities | null>(null);
+  const [detail, setDetail] = useState<SafetyFacilitiesType | null>(null);
 
   const { data, isLoading, error } = useSafetyFacilities(
     currentPage,
@@ -45,7 +45,7 @@ function SafetyFacilities() {
     }
   };
 
-  const handleDetailClick = (item: SafetyFacilities) => {
+  const handleDetailClick = (item: SafetyFacilitiesType) => {
     setDetail(item);
   };
 

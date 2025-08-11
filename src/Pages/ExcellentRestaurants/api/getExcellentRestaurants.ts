@@ -1,11 +1,11 @@
-import type { ExcellentRestaurants } from "./entity";
+import type { ExcellentRestaurantsType } from "./entity";
 
 const API_KEY = import.meta.env.VITE_API_KEY_ENCODING;
 
 export async function getExcellentRestaurants(
   page: number,
   perPage: number
-): Promise<{ data: ExcellentRestaurants[]; totalCount: number }> {
+): Promise<{ data: ExcellentRestaurantsType[]; totalCount: number }> {
   const url = `https://api.odcloud.kr/api/15043694/v1/uddi:6a6f9385-5a27-44d4-83cc-ad91a5b338a0?page=${page}&perPage=${perPage}&serviceKey=${API_KEY}`;
 
   const response = await fetch(url);

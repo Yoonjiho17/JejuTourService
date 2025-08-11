@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { useSpecialResources } from "./hooks/useSpecialResources";
 import styles from "./SpecialResources.module.css";
-import type { SpecialResources } from "./api/entity";
+import type { SpecialResourcesType } from "./api/entity";
 
 function SpecialResources() {
   const itemsPerPage = 10;
   const pagesPerGroup = 10;
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [detail, setDetail] = useState<SpecialResources | null>(null);
+  const [detail, setDetail] = useState<SpecialResourcesType | null>(null);
 
   const { data, isLoading, error } = useSpecialResources(
     currentPage,
@@ -45,7 +45,7 @@ function SpecialResources() {
     }
   };
 
-  const handleDetailClick = (item: SpecialResources) => {
+  const handleDetailClick = (item: SpecialResourcesType) => {
     setDetail(item);
   };
 

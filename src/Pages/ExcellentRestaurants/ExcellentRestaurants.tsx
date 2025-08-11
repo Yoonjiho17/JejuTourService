@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { useExcellentRestaurants } from "./hooks/useExcellentRestaurants";
 import styles from "./ExcellentRestaurants.module.css";
-import type { ExcellentRestaurants } from "./api/entity";
+import type { ExcellentRestaurantsType } from "./api/entity";
 
 function ExcellentRestaurants() {
   const itemsPerPage = 10;
   const pagesPerGroup = 10;
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [detail, setDetail] = useState<ExcellentRestaurants | null>(null);
+  const [detail, setDetail] = useState<ExcellentRestaurantsType | null>(null);
 
   const { data, isLoading, error } = useExcellentRestaurants(
     currentPage,
@@ -45,7 +45,7 @@ function ExcellentRestaurants() {
     }
   };
 
-  const handleDetailClick = (item: ExcellentRestaurants) => {
+  const handleDetailClick = (item: ExcellentRestaurantsType) => {
     setDetail(item);
   };
 

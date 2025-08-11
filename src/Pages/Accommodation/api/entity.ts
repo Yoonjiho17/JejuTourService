@@ -1,4 +1,4 @@
-export interface Accommodation {
+export interface AccommodationType {
   마을명: string;
   시군구명: string;
   읍면동명: string;
