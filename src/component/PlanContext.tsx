@@ -1,4 +1,10 @@
-import { createContext, useContext, useState, type ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  type ReactNode,
+} from "react";
 
 interface PlanItem {
   time: string;
@@ -25,7 +31,10 @@ interface PlanContextType {
 const PlanContext = createContext<PlanContextType | undefined>(undefined);
 
 export function PlanProvider({ children }: { children: ReactNode }) {
-  const [days, setDays] = useState<PlanItem[][]>([[]]); // 1일차부터 시작
+  const [days, setDays] = useState<PlanItem[][]>(() => {
+    const stored = localStorage.getItem("days");
+    return stored ? JSON.parse(stored) : [[]];
+  });
   const [selectedDay, setSelectedDay] = useState(0);
   const [showModal, setShowModal] = useState(false);
   const [newTime, setNewTime] = useState("");
@@ -77,6 +86,10 @@ export function PlanProvider({ children }: { children: ReactNode }) {
     updated.splice(index, 1);
     setDays(updated);
   };
+
+  useEffect(() => {
+    localStorage.setItem("days", JSON.stringify(days));
+  }, [days]);
 
   return (
     <PlanContext.Provider
